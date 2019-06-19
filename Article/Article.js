@@ -1,23 +1,29 @@
 // Because classes are not hoisted you will need to start your code at the bottom of the page.  Look for the comment "START HERE"
 
 class Article {
-  constructor(domElement) {
+  constructor(article) {
     // assign this.domElement to the passed in domElement
-    this.domElement;
+    this.article = article;
+    //this.article.classList.add('close');
     // create a reference to the ".expandButton" class. 
-    this.expandButton;
+    this.expandButton = article.querySelector('.expandButton');
+    console.log(this.expandButton);
+
     // Using your expandButton reference, update the text on your expandButton to say "expand"
+    this.expandButton.contentEditable = 'True';
+    this.expandButton.textContent = 'Expand';
     
+
     // Set a click handler on the expandButton reference, calling the expandArticle method.
-    
+    this.expandButton.addEventListener('click', () => this.expandArticle());
   }
 
   expandArticle() {
     // Using our reference to the domElement, toggle a class to expand or hide the article.
-
-  }
+    //this.article.classList.remove('close')
+    this.article.classList.toggle('article-open')
 }
-
+}
 /* START HERE: 
 
 - Select all classes named ".article" and assign that value to the articles variable.  
@@ -26,4 +32,5 @@ class Article {
 
 */
 
-let articles;
+let articles = document.querySelectorAll('.article');
+articles.forEach(article => new Article(article));
