@@ -17,6 +17,7 @@ let menuItems = [
     </ul>
   </div>
   Pass the function an array as it's only argument.
+
   Step 2: Iterate over the array creating a list item <li> element for each item in the array. 
   Add those items to the <ul>
   Step 3: Using a DOM selector, select the menu button currently on the DOM.
@@ -26,3 +27,31 @@ let menuItems = [
   Step 6: add the menu component to the DOM.
   
 */
+const body = document.querySelector('body')
+body.appendChild(createMenu(menuItems));
+
+function createMenu(array){
+  const menu = document.createElement('div');
+  const list = document.createElement('ul');
+
+  body.appendChild(menu)
+  menu.appendChild(list)
+  
+  array.forEach(item => 
+    {let listItems = document.createElement('li');  
+    list.appendChild(listItems);
+    listItems.classList.add('li');
+    listItems.textContent = item;
+  })
+
+  menu.classList.add('menu')
+
+
+  const button = document.querySelector('.menu-button')
+
+  button.addEventListener('click', event => {
+  menu.classList.toggle('menu--open')
+  })
+
+  return menu 
+}
